@@ -1,5 +1,8 @@
+import login.LoginForm;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        LoginForm login = new LoginForm();
+        login.showFrame();
     }
 }

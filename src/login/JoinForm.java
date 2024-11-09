@@ -41,17 +41,12 @@ public class JoinForm extends JDialog {
     private JLabel reLabel;
     private JLabel nameLabel;
     private JLabel nickNameLabel;
-    private JLabel phoneNumberLabel;
 
     private JTextField idTxt;
     private JTextField pwTxt;
     private JTextField reTxt;
     private JTextField nameTextField;
     private JTextField nickNameTextField;
-    private JTextField phoneNumberTextField;
-
-    private JRadioButton yesRadioButton;
-    private JRadioButton noRadioButton;
 
     private JButton joinBtn;
     private JButton cancelBtn;
@@ -97,21 +92,11 @@ public class JoinForm extends JDialog {
         nickNameLabel = new JLabel("닉네임", JLabel.LEFT);
         nickNameLabel.setPreferredSize(labelSize);
 
-        phoneNumberLabel = new JLabel("연락처", JLabel.LEFT);
-        phoneNumberLabel.setPreferredSize(labelSize);
-
         idTxt = new JTextField(txtSize);
         pwTxt = new JPasswordField(txtSize);
         reTxt = new JPasswordField(txtSize);
         nameTextField = new JTextField(txtSize);
         nickNameTextField = new JTextField(txtSize);
-        phoneNumberTextField = new JTextField(txtSize);
-
-        yesRadioButton = new JRadioButton("SMS 수신 동의", true);
-        noRadioButton = new JRadioButton("SMS 수신 미동의", false);
-        ButtonGroup group = new ButtonGroup();
-        group.add(yesRadioButton);
-        group.add(noRadioButton);
 
         joinBtn = new JButton("JOIN");
         joinBtn.setPreferredSize(btnSize);
@@ -149,32 +134,21 @@ public class JoinForm extends JDialog {
         nickNamePanel.add(nickNameLabel);
         nickNamePanel.add(nickNameTextField);
 
-        JPanel phoneNumberPanel = new JPanel(flowLeft);
-        phoneNumberPanel.add(phoneNumberLabel);
-        phoneNumberPanel.add(phoneNumberTextField);
-
         mainCPanel.add(idPanel);
         mainCPanel.add(pwPanel);
         mainCPanel.add(rePanel);
         mainCPanel.add(namePanel);
         mainCPanel.add(nickNamePanel);
-        mainCPanel.add(phoneNumberPanel);
 
-        JPanel smsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        smsPanel.add(yesRadioButton);
-        smsPanel.add(noRadioButton);
-        smsPanel.setBorder(new TitledBorder("SMS 수신 동의"));
 
         JPanel southPanel = new JPanel();
         southPanel.add(joinBtn);
         southPanel.add(cancelBtn);
 
         mainCPanel.add(northPanel, BorderLayout.NORTH);
-        mainCPanel.add(smsPanel, BorderLayout.CENTER);
         mainCPanel.add(southPanel, BorderLayout.SOUTH);
 
         mainCPanel.setBorder(new EmptyBorder(0, 20, 0, 20));
-        smsPanel.setBorder(new EmptyBorder(0, 0, 10, 0));
 
         add(northPanel, BorderLayout.NORTH);
         add(mainCPanel, BorderLayout.CENTER);
@@ -216,9 +190,7 @@ public class JoinForm extends JDialog {
                         users.addUser(new User(idTxt.getText(),
                                 String.valueOf(((JPasswordField) pwTxt) .getPassword()),
                                 nameTextField.getText(),
-                                nickNameTextField.getText(),
-                                phoneNumberTextField.getText(),
-                                getGroup()));
+                                nickNameTextField.getText()));
                         JOptionPane.showMessageDialog(JoinForm.this, "회원가입을 완료했습니다","WELCOME",JOptionPane.PLAIN_MESSAGE);
                         dispose();
                         loginForm.setVisible(true);
@@ -252,13 +224,6 @@ public class JoinForm extends JDialog {
             return true;
         }
         return result;
-    }
-
-    public String getGroup() {
-        if(yesRadioButton.isSelected()) {
-            return yesRadioButton.getText();
-        }
-        return noRadioButton.getText();
     }
 
     private void showFrame() {
