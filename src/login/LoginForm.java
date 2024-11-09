@@ -37,18 +37,14 @@ public class LoginForm extends JFrame {
     private LayoutManager flowLeft;
 
     public LoginForm() {
-
         users = new UsersData();
-
         init();
         setDisplay();	// UI 화면을 설정하는 메서드
         addListners();	// 리스너를 추가하는 메서드
         showFrame();	// 프레임을 화면에 표시하는 메서드
-
     }
 
     public void init() {
-
         // 사이즈 통일
         Dimension labelSize= new Dimension(80, 30);
         int txtSize = 10;
@@ -68,7 +64,6 @@ public class LoginForm extends JFrame {
         joinBtn.setPreferredSize(btnSize);
 
         flowLeft = new FlowLayout(FlowLayout.LEFT);
-
     }
 
     public UsersData getUsers() {
@@ -173,7 +168,4 @@ public class LoginForm extends JFrame {
         setResizable(false);							// 프레임의 크기 고정
         setVisible(true);
     }
-    public static void main(String[] args) {
-        new LoginForm();
-    } // main
 } 

@@ -15,16 +15,12 @@ public class User implements Serializable {
     private String pw;
     private String name;
     private String nickName;
-    private String phoneNumber;
-    private String smsOk;
 
-    public User(String id, String pw, String name, String nickName, String phoneNumber, String smsOk) {
+    public User(String id, String pw, String name, String nickName) {
         setId(id);
         setPw(pw);
         setName(name);
         setNickName(nickName);
-        setPhoneNumber(phoneNumber);
-        setSmsOk(smsOk);
     }
 
     public User(String id) {
@@ -58,20 +54,6 @@ public class User implements Serializable {
         this.nickName = nickName;
     }
 
-    public String getphoneNumber() {
-        return phoneNumber;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getSmsOk() {
-        return smsOk;
-    }
-
-    public void setSmsOk(String smsOk) {
-        this.smsOk = smsOk;
-    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -90,8 +72,6 @@ public class User implements Serializable {
         info += "암호: " + pw + "\n";
         info += "이름: " + name + "\n";
         info += "닉네임: " + nickName + "\n";
-        info += "연락처: " + phoneNumber + "\n";
-        info += "SMS 수신 동의: " + smsOk + "\n";
         return info;
     }
 }
