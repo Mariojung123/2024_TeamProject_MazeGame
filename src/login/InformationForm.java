@@ -1,6 +1,5 @@
 package login;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,7 +31,6 @@ public class InformationForm extends JDialog {
     private JTextArea check;
     private JButton btnLogout;
     private JButton btnWithdraw;
-    private JButton btnGameStart;
 
     public InformationForm(LoginForm owner, String Id) {
         this.owner = owner;
@@ -55,25 +53,21 @@ public class InformationForm extends JDialog {
         check = new JTextArea(10, 30);
         check.setEditable(false);
 
-        btnLogout = new JButton("Log out");
+        btnLogout = new JButton("로그아웃");
         btnLogout.setPreferredSize(btnsize);
 
-        btnWithdraw = new JButton("Withdraw");
+        btnWithdraw = new JButton("탈퇴하기");
         btnWithdraw.setPreferredSize(btnsize);
-
-        btnGameStart = new JButton("Game Start");
-        btnGameStart.setPreferredSize(btnsize);
     }
 
     private void setDisplay() {
         LineBorder lBorder = new LineBorder(Color.GRAY, 1);
-        TitledBorder border = new TitledBorder(lBorder, "User information");
+        TitledBorder border = new TitledBorder(lBorder, "안녕하세요! 본인의 정보를 확인 할 수 있습니다");
         check.setBorder(border);
 
         JPanel southPanel = new JPanel();
         southPanel.add(btnLogout);
         southPanel.add(btnWithdraw);
-        southPanel.add(btnGameStart);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(new JScrollPane(check), BorderLayout.NORTH);
@@ -104,7 +98,7 @@ public class InformationForm extends JDialog {
                         // withdraw 메서드 호출
                         users.withdraw(userForWithdraw.getId());
 
-                        JOptionPane.showMessageDialog(InformationForm.this, "회원 정보가 삭제되었습니다", "BYE JAVA", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(InformationForm.this, "회원 정보가 삭제되었습니다" + "\n" + "다음에 또 만나요!", "BYE JAVA", JOptionPane.PLAIN_MESSAGE);
                         dispose();
                         owner.setVisible(true);
                     } else {
@@ -125,7 +119,6 @@ public class InformationForm extends JDialog {
                 owner.setVisible(true);
             }
         });
-
     }
 
     public void setcheck(String userInfo) {
