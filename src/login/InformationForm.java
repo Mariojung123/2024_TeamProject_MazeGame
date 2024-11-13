@@ -1,5 +1,7 @@
 package login;
 
+import maze.MazeGame;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,12 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
@@ -31,26 +28,65 @@ public class InformationForm extends JDialog {
     private JTextArea check;
     private JButton btnLogout;
     private JButton btnWithdraw;
+    private JButton startGameBtn;
+    private JButton checkRankingBtn;
+    private JButton gameStoryBtn;
 
-    public InformationForm(LoginForm owner, String Id) {
-        this.owner = owner;
-        this.userId = owner.getidTxt(); // 사용자 ID 저장
-        this.users = owner.getUsers();
-//		super(owner, "HELLO JAVA", true);
-//		this.owner = owner;
-//		users = owner.getUsers();
+    public InformationForm(JFrame parent, String userId) {
+        // Initialize components
+        startGameBtn = new JButton("게임 시작");
+        checkRankingBtn = new JButton("랭킹 확인");
+        gameStoryBtn = new JButton("게임 스토리");
 
-        init();
-        setDisplay();
-        addListners();
-        setcheck("사용자 정보 텍스트 등"); // 수정된 부분
-        showFrame();
+        // Set up the frame
+        setTitle("User Information");
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // Add components to the panel with BoxLayout
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(new JLabel("User Information for: " + userId));
+        panel.add(startGameBtn);
+        panel.add(checkRankingBtn);
+        panel.add(gameStoryBtn);
+        add(panel);
+
+        // Add action listeners for the buttons
+        startGameBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MazeGame mazeGame = new MazeGame(10); // Create an instance of MazeGame with a size of 10
+                mazeGame.startMazeGame(); // Call the startMazeGame method
+                dispose(); // Close InformationForm
+            }
+        });
+
+        checkRankingBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implement ranking check functionality here
+                JOptionPane.showMessageDialog(InformationForm.this, "랭킹 확인 기능은 아직 구현되지 않았습니다.");
+            }
+        });
+
+        gameStoryBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implement game story functionality here
+                JOptionPane.showMessageDialog(InformationForm.this, "게임 스토리 기능은 아직 구현되지 않았습니다.");
+            }
+        });
+
+        // Make the frame visible
+        setVisible(true);
     }
 
     private void init() {
         Dimension btnsize = new Dimension(100, 25);
 
-        check = new JTextArea(10, 30);
+        check = new JTextArea(10, 20);
         check.setEditable(false);
 
         btnLogout = new JButton("로그아웃");
